@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraControl : MonoBehaviour
 {
     public float RotationSpeed = 1;
     public Transform Target, Player;
