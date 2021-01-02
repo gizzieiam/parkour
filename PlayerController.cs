@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
-    public float jumpHeight = 2.0f;
     public bool isGrounded;
     public Vector3 jump;
+    public int jumpCount;
     private Rigidbody self;
+
 
 
     Vector3 velocity;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     {
         self = GetComponent<Rigidbody>();
         jump = new Vector3(0.0f, 2.0f, 0.0f);
+        jumpCount = 0;
     }
 
     // Update is called once per frame
@@ -38,9 +40,13 @@ public class PlayerController : MonoBehaviour
             transform.Translate(moveX * Time.deltaTime * speed, 0, moveY * Time.deltaTime);
             if(Input.GetButtonDown("Jump"))
             {
+                jumpCount = jumpCount + 1;
             self.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
-            isGrounded = false;
-
+            }
+            if(jumpCount == 2)
+            {
+                isGrounded = false;
+                jumpCount = 0;                
             }
         }
     }
