@@ -51,7 +51,7 @@ public class CameraControl : MonoBehaviour
             {
                 Obstruction = hit.transform;
                 Obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
-                if(Vector3.Distance(Obstruction.position, transform.position) >= 3f && Vector3.Distance(transform.position, Target.position) >= 1.5f)
+                if(Vector3.Distance(Obstruction.position, transform.position) >= 2f && Vector3.Distance(transform.position, Target.position) >= 0.5f)
                 {
                     transform.Translate(Vector3.forward * zoomSpeed * Time.deltaTime);
                 }
