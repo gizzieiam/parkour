@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static Timer;
+using static DeadZone;
 
 
 public class Win : MonoBehaviour
@@ -12,6 +13,8 @@ public class Win : MonoBehaviour
     void Start()
     {
         GameObject.Find("WinnerUI").GetComponent<Text>().text = "";
+        GameObject.Find("WinInfoUI").GetComponent<Text>().text = "";
+
     }
 
     // Update is called once per frame
@@ -20,7 +23,7 @@ public class Win : MonoBehaviour
         if(isOver)
         {
         GameObject.Find("WinnerUI").GetComponent<Text>().text = "Winner Winner \n Chicken Dinner";
-        GameObject.Find("WinInfoUI").GetComponent<Text>().text = "You finished in " + FinishedTime + "\n You died " + " times.";
+        GameObject.Find("WinInfoUI").GetComponent<Text>().text = "You finished in " + FinishedTime + "\n You died " + deathCount + " times.";
 
 
         }

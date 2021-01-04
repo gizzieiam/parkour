@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Win;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed;
+    public float time;
     public bool isGrounded;
     public Vector3 jump;
     public int jumpCount;
@@ -19,6 +21,7 @@ public class PlayerController : MonoBehaviour
         self = GetComponent<Rigidbody>();
         jump = new Vector3(0.0f, 2.0f, 0.0f);
         jumpCount = 0;
+        time = 0.0f;
     }
 
     // Update is called once per frame
@@ -29,24 +32,30 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMovement()
     {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Vertical");
-
-        Vector3 playerMovement = new Vector3(moveX, 0f, moveY) * speed * Time.deltaTime;
-        transform.Translate(playerMovement, Space.Self);
-
-        if(isGrounded)
+        if (isOver){
+            time = time + Time.deltaTime;
+        }
+        if(!isOver)
         {
-            transform.Translate(moveX * Time.deltaTime * speed, 0, moveY * Time.deltaTime);
-            if(Input.GetButtonDown("Jump"))
+            float moveX = Input.GetAxis("Horizontal");
+            float moveY = Input.GetAxis("Vertical");
+
+            Vector3 playerMovement = new Vector3(moveX, 0f, moveY) * speed * Time.deltaTime;
+            transform.Translate(playerMovement, Space.Self);
+
+            if(isGrounded)
             {
-                jumpCount = jumpCount + 1;
-            self.AddForce(new Vector3(0, 7, 0), ForceMode.Impulse);
-            }
-            if(jumpCount == 2)
-            {
-                isGrounded = false;
-                jumpCount = 0;                
+                transform.Translate(moveX * Time.deltaTime * speed, 0, moveY * Time.deltaTime);
+                if(Input.GetButtonDown("Jump"))
+                {
+                    jumpCount = jumpCount + 1;
+                self.AddForce(new Vector3(0, 7, 0), ForceMode.Impulse);
+                }
+                if(jumpCount == 2)
+                {
+                    isGrounded = false;
+                    jumpCount = 0;                
+                }
             }
         }
     }
