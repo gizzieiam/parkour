@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
             if(Input.GetButtonDown("Jump"))
             {
                 jumpCount = jumpCount + 1;
-            self.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
+            self.AddForce(new Vector3(0, 7, 0), ForceMode.Impulse);
             }
             if(jumpCount == 2)
             {

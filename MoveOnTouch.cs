@@ -21,9 +21,4 @@ public class MoveOnTouch : MonoBehaviour
             Player.transform.parent = null;
         }
     }
-
-    void OnCollisionEnter(Collision col)
-    {
-       //
-    }
 }
