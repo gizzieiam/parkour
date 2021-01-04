@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using static Player;
+using static onHit;
 
 public class DeadZone : MonoBehaviour
 {
@@ -16,7 +17,19 @@ public class DeadZone : MonoBehaviour
 
     void Update()
     {
-        
+        onDeath();
+    }
+    void onDeath()
+    {
+        if(Health == 0 || isSmashed)
+        {
+            deathCount = deathCount + 1;
+            player.transform.position = respawnPoint.transform.position;
+            Health = 3;
+            isSmashed = false;
+
+        }
+
     }
     void OnTriggerEnter(Collider other)
     {
